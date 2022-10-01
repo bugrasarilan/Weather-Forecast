@@ -2,9 +2,10 @@ import React from "react";
 
 function Index() {
   return (
-    <div className=' flex flex-col bg-primary-privacy w-full text-2xl'>
-      <div style={{ height: 100, width: 100 }}> sa</div>
-      <div style={{ height: 100, width: 100 }}> sa</div>
+    <div className=' flex flex-col md:flex-row h-80px bg-primary-privacy w-full text-2xl items-center justify-start text-primary-white'>
+      <label className='ml-5'>WEATHER </label>
+
+      <div></div>
     </div>
   );
 }

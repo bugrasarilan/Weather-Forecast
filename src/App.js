@@ -1,20 +1,16 @@
-import './App.css';
-import { Route,Routes } from 'react-router-dom';
-import Daily from './pages/Daily';
-import Weekly from './pages/Weekly';
-import Monthly from './pages/Monthly';
-import Header from './pages/Header';
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/navbar";
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
+    <div>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Daily />} />
-        <Route path="Weekly" element={< Weekly />} />
-        <Route path="Monthly" element={<Monthly />} />
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='Detail' element={<Detail />} />
       </Routes>
-      
     </div>
   );
 }

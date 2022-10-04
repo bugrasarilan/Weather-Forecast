@@ -6,6 +6,8 @@ import {FaRegSnowflake} from "react-icons/fa"
 import {RiWindyFill} from "react-icons/ri"
 
 
+
+
 export default function Index() {
   return <div className='flex'>Home Page 
   <div>
@@ -15,6 +17,10 @@ export default function Index() {
 <h2>karlı<FaRegSnowflake/></h2>
 <h2>rüzgarlı<RiWindyFill/></h2>
 </div>
+
+
+
+
   
   </div>;
 }

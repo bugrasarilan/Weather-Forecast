@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { BsCloudRainHeavy } from "react-icons/bs";
 import { WiDayCloudy } from "react-icons/wi";
@@ -6,31 +6,32 @@ import { FaRegSnowflake } from "react-icons/fa";
 import { RiWindyFill } from "react-icons/ri";
 import GetWeather from "../../api";
 
-export default async function Index() {
-  console.log("dd", window.navigator.geolocation);
-  const location = window.navigator.geolocation;
+export default function Index() {
+  
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  const [status, setStatus] = useState(null);
 
-  const [myLocationInfo, setMyLocationInfo] = useState();
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setStatus('Geolocation is not supported by your browser');
+    } else {
+      setStatus('Locating...');
+      navigator.geolocation.getCurrentPosition((position) => {
+        setStatus(null);
+        setLat(position.coords.latitude);
+        setLng(position.coords.longitude);
+      }, () => {
 
-  console.log("location", location);
-  useEffect(() => {
-    if (location) {
-      location.getCurrentPosition((position) => {
-        //enlem boylam bilgisini al
-        console.log("position.coords.latitude", position.coords.latitude);
-
-        //aldığın enlem boylam bilgisini api'ya yolla ve hava durumu bilgisini al
-        GetWeather(position.coords.latitude, position.coords.longitude).then(
-          (e) => {
-            console.log("response", e);
-
-            //aldığın hava durumu bilgisin myLocationInfo'ya kaydet
-            setMyLocationInfo(e);
-          }
-        );
+        
+        setStatus('Unable to retrieve your location');
+        
+        
       });
     }
-  }, [location]);
+  }
+
+
 
   return (
     <div className='flex'>
@@ -56,6 +57,14 @@ export default async function Index() {
           <RiWindyFill />
         </h2>
       </div>
+
+      <button onClick={getLocation}>Get Location</button>
+      <h1>Coordinates</h1>
+      <p>{status}</p>
+      {lat && <p>Latitude: {lat}</p>}
+      {lng && <p>Longitude: {lng}</p>}
+
+
     </div>
   );
 }

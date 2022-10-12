@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineWbSunny } from "react-icons/md";
 import { BsCloudRainHeavy } from "react-icons/bs";
 import { WiDayCloudy } from "react-icons/wi";
@@ -7,14 +7,14 @@ import { RiWindyFill } from "react-icons/ri";
 import axios from "axios";
 
 export default function Index() {
-  const [weather,setweather]=useState();
+  const [weather, setweather] = useState();
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
-  const API_KEY= "e7ab5317ec42a1dede35dd7dfe795c29"
- 
+  const API_KEY = "e7ab5317ec42a1dede35dd7dfe795c29"
 
-  const getLocation =async () => {
+
+  const getLocation = async () => {
     if (!navigator.geolocation) {
       setStatus('Geolocation is not supported by your browser');
     } else {
@@ -23,22 +23,15 @@ export default function Index() {
         setStatus(null);
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
-        console.log("latitude",position.coords.latitude)
-        console.log("longitude",position.coords.longitude)
-
-      
-         const data = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}`)
-         .then(data => {console.log('axios',data)})
-         setweather(data)
-       
+        console.log("latitude", position.coords.latitude)
+        console.log("longitude", position.coords.longitude)
       }, () => {
-
-        setStatus('Unable to retrieve your location');        
-        
+        setStatus('Unable to retrieve your location');
       });
     }
   }
- 
+  const data = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}`)
+  .then(data =>  { console.log('axios', data) })
 
   return (
     <div className='flex'>
@@ -71,9 +64,11 @@ export default function Index() {
       {lat && <p>Latitude: {lat}</p>}
       {lng && <p>Longitude: {lng}</p>}
      
-     <div>
-    
-     </div>
+
+      <div>
+
+
+      </div>
     </div>
   );
 }

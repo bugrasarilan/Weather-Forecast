@@ -7,11 +7,11 @@ import { RiWindyFill } from "react-icons/ri";
 import axios from "axios";
 
 export default function Index() {
-  const [weather, setweather] = useState();
+
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
-  const API_KEY = "e7ab5317ec42a1dede35dd7dfe795c29"
+  const API_KEY = "f5ed8092a4beef97cc44e2e85c49d2ad"
 
 
   const getLocation = async () => {
@@ -25,13 +25,26 @@ export default function Index() {
         setLng(position.coords.longitude);
         console.log("latitude", position.coords.latitude)
         console.log("longitude", position.coords.longitude)
+
       }, () => {
         setStatus('Unable to retrieve your location');
       });
     }
   }
-  const data = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}`)
-  .then(data =>  { console.log('axios', data) })
+
+
+  const [data, setdata] = useState([]);
+  useEffect(() => {
+    const fetchdata = async () => {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`);
+      setdata(response.data);
+    }
+    fetchdata();
+  }, [lat, lng]);
+
+  console.log(data);
+
+
 
   return (
     <div className='flex'>
@@ -57,13 +70,20 @@ export default function Index() {
           <RiWindyFill />
         </h2>
       </div>
+      <div>
 
+      </div>
+    
       <button onClick={getLocation}>Get Location</button>
       <h1>Coordinates </h1>
       <p>{status}</p>
+
       {lat && <p>Latitude: {lat}</p>}
       {lng && <p>Longitude: {lng}</p>}
-     
+      {data.name && <p> şehir: {data.name} </p>}
+      {data.main && <p> sıcaklık: {data.main.temp} </p>}
+
+
 
       <div>
 

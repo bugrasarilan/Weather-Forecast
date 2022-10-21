@@ -57,11 +57,45 @@ export default function Index() {
   };
 
   return (
-    <div className='flex flex-col lg:flex-row h-20  bg-gray-300 shadow-xl m-2 justify-center'>
-      <div className='hidden relative md:flex w-20 bg-purple-500'>
-        <div className='flex absolute bg-red-600'> nisa</div>
-        <div className='flex  bg-gray-600 top-0 left-0'> yigit</div>
+<div className='flex'>
+      Home Page
+      <div>
+        <h2>
+          güneşli
+          <MdOutlineWbSunny />{" "}
+        </h2>
+        <h2>
+          yağmurlu <BsCloudRainHeavy />
+        </h2>
+        <h2>
+          parçalı bulutlu
+          <WiDayCloudy />
+        </h2>
+        <h2>
+          karlı
+          <FaRegSnowflake />
+        </h2>
+        <h2>
+          rüzgarlı
+          <RiWindyFill />
+        </h2>
       </div>
+      <button onClick={getLocation}>konum bilgilerini al</button>
+      <div>
+        <h1>Coordinates: </h1>
+        <p>{status}</p>
+
+        {data.name && <p> şehir: {data.name} </p>}
+        {data.main && <p> sıcaklık: {Math.ceil(data.main.temp)} </p>}
+        {data.weather && (
+          <p> havanın durumu:{data.weather.map((data) => data.main)}</p>
+        )}
+        {data.weather && <p> havanın özelliği:{} </p>}
+      </div>
+      {iconID && <GetIcon />}
     </div>
-  );
+
+
+    
+  )
 }

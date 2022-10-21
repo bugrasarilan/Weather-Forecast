@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { MdOutlineWbSunny } from "react-icons/md";
+import {  MdOutlineWbSunny } from "react-icons/md";
 import { BsCloudRainHeavy } from "react-icons/bs";
 import { WiDayCloudy } from "react-icons/wi";
 import { FaRegSnowflake } from "react-icons/fa";
 import { RiWindyFill } from "react-icons/ri";
 import axios from "axios";
+
 
 export default function Index() {
 
@@ -18,7 +19,7 @@ export default function Index() {
     if (!navigator.geolocation) {
       setStatus('Geolocation is not supported by your browser');
     } else {
-      setStatus('Locating...');
+      setStatus('Loading...');
       navigator.geolocation.getCurrentPosition((position) => {
         setStatus(null);
         setLat(position.coords.latitude);
@@ -43,6 +44,42 @@ export default function Index() {
   }, [lat, lng]);
 
   console.log(data);
+
+
+
+
+const info = "ankara"
+switch(info){
+  case  "izmir" : console.log("1. değer",info)
+  
+  break; 
+  case "clear" :  console.log("2. değer",info)
+  break;
+  case "ankara" : console.log("3. değer",info)
+  break; 
+  default:   console.log("değer yok",info)
+    break;
+}
+
+
+
+//
+  let process =3
+   switch (process) {
+     case 2:
+       console.log(process)
+       break;
+     case 3:
+       console.log("3.durum",process)
+       break;
+     default:
+       break;
+  }
+
+
+
+ // {data.weather.map(data => data.main)}
+// AIzaSyDJYr8QEwBkPcOju7cLqDjdgY6hR99rUUs google maps api
 
 
 
@@ -72,17 +109,24 @@ export default function Index() {
       </div>
       <div>
 
+
       </div>
-    
-      <button onClick={getLocation}>Get Location</button>
-      <h1>Coordinates </h1>
-      <p>{status}</p>
 
-      {lat && <p>Latitude: {lat}</p>}
-      {lng && <p>Longitude: {lng}</p>}
-      {data.name && <p> şehir: {data.name} </p>}
-      {data.main && <p> sıcaklık: {data.main.temp} </p>}
+      <button onClick={getLocation}>konum bilgilerini al</button>
 
+
+      <div><h1>Coordinates: </h1>
+        <p>{status}</p>
+        {lat && <p>Latitude: {lat}</p>}
+        {lng && <p>Longitude: {lng}</p>}
+        {data.name && <p> şehir: {data.name} </p>}
+        {data.main && <p> sıcaklık: {Math.ceil(data.main.temp)} </p>}
+        {data.weather && <p> havanın durumu:{data.weather.map(data => data.main) }</p>}
+        {data.weather && <p> havanın özelliği:{data.weather.map(data => data.description)} </p>}
+      </div>
+
+  {info}
+  
 
 
       <div>

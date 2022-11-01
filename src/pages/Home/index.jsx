@@ -7,57 +7,34 @@ import { RiWindyFill } from "react-icons/ri";
 import axios from "axios";
 
 export default function Index() {
+  const [weather, setweather] = useState();
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
+  const API_KEY = "e7ab5317ec42a1dede35dd7dfe795c29"
 
-  const [data, setData] = useState([]);
-  const [iconID, setIconID] = useState();
-
-  const API_KEY = "f5ed8092a4beef97cc44e2e85c49d2ad";
 
   const getLocation = async () => {
     if (!navigator.geolocation) {
-      setStatus("Geolocation is not supported by your browser");
+      setStatus('Geolocation is not supported by your browser');
     } else {
-      setStatus("Loading...");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setStatus(null);
-
-          axios
-            .get(
-              `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}&units=metric`
-            )
-            .then((e) => {
-              console.log("e.data", e.data.weather[0].id);
-              setData(e.data);
-              setIconID(e.data.weather[0].id);
-            });
-        },
-        () => {
-          setStatus("Unable to retrieve your location");
-        }
-      );
+      setStatus('Locating...');
+      navigator.geolocation.getCurrentPosition((position) => {
+        setStatus(null);
+        setLat(position.coords.latitude);
+        setLng(position.coords.longitude);
+        console.log("latitude", position.coords.latitude)
+        console.log("longitude", position.coords.longitude)
+      }, () => {
+        setStatus('Unable to retrieve your location');
+      });
     }
-  };
-
-  //
-
-  // {data.weather.map(data => data.main)}
-  // AIzaSyDJYr8QEwBkPcOju7cLqDjdgY6hR99rUUs google maps api
-  const GetIcon = () => {
-    switch (iconID) {
-      case 800:
-        return <BsCloudRainHeavy />;
-      case 600:
-        return <WiDayCloudy />;
-
-      default:
-        break;
-    }
-  };
+  }
+  const data = axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}`)
+  .then(data =>  { console.log('axios', data) })
 
   return (
-<div className='flex'>
+    <div className='flex'>
       Home Page
       <div>
         <h2>
@@ -80,22 +57,18 @@ export default function Index() {
           <RiWindyFill />
         </h2>
       </div>
-      <button onClick={getLocation}>konum bilgilerini al</button>
+
+      <button onClick={getLocation}>Get Location</button>
+      <h1>Coordinates </h1>
+      <p>{status}</p>
+      {lat && <p>Latitude: {lat}</p>}
+      {lng && <p>Longitude: {lng}</p>}
+     
+
       <div>
-        <h1>Coordinates: </h1>
-        <p>{status}</p>
 
-        {data.name && <p> şehir: {data.name} </p>}
-        {data.main && <p> sıcaklık: {Math.ceil(data.main.temp)} </p>}
-        {data.weather && (
-          <p> havanın durumu:{data.weather.map((data) => data.main)}</p>
-        )}
-        {data.weather && <p> havanın özelliği:{} </p>}
+
       </div>
-      {iconID && <GetIcon />}
     </div>
-
-
-    
-  )
+  );
 }

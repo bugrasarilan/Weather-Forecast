@@ -7,7 +7,7 @@ export default function Index() {
    const KEY =process.env.REACT_APP_API_KEY; 
    const [day, setDay] = useState([]);
    const [hour, setHour] = useState([]);
-   const [Search, setSearch] = useState("");
+   const [Search, setSearch] = useState(""); 
 
    const cal = (e) => {
       if (e.key === "Enter")

@@ -53,6 +53,7 @@ export default function Index() {
         });
   };
 
+  
   const GetIcon1 = () => {
     switch (iconID1 ) {
       case "Clear":

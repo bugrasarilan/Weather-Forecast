@@ -5,6 +5,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.14.3",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@react-google-maps/api": "^2.13.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -44,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }

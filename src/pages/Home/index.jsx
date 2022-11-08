@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import "../Home/index.css";
+
 
 export default function Index() {
   const [status, setStatus] = useState(null);

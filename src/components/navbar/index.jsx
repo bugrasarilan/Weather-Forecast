@@ -7,8 +7,6 @@ function Index() {
       <label className='ml-5'>WEATHER </label>
 
       
-
-      <div> </div>
     </div>
   );
 }

@@ -39,23 +39,23 @@ export default function Index() {
     }
   };
 
-  const cal = (e) => {
-    if (e.key === "Enter")
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${Search}&lang=tr&appid=${KEY}&units=metric`)
-        .then((day) => {
-          console.log("şehir bilgisi ", day)
-          setDay(day.data)
-          console.log("setday", day)
-          setSearch("")
-          setIconID(day.data.weather[0].main);
-          console.log("main", day.data.weather[0].main);
+  const cal = () => {
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${Search}&lang=tr&appid=${KEY}&units=metric`)
+      .then((day) => {
+        console.log("şehir bilgisi ", day)
+        setDay(day.data)
+        console.log("setday", day)
+        setSearch("")
+        setIconID(day.data.weather[0].main);
+        console.log("main", day.data.weather[0].main);
 
-        });
+      });
   };
 
-  
+
+
   const GetIcon1 = () => {
-    switch (iconID1 ) {
+    switch (iconID1) {
       case "Clear":
         return <img src={require(`../../images/01d.png`)} alt="sunny"></img>
 
@@ -92,7 +92,7 @@ export default function Index() {
   };
 
   const GetIcon = () => {
-    switch (iconID ) {
+    switch (iconID) {
       case "Clear":
         return <img src={require(`../../images/01d.png`)} alt="sunny"></img>
 
@@ -132,33 +132,46 @@ export default function Index() {
 
     <div className='flex flex-col md:flex-row md:justify-around sm:flex-row sm:justify-around xs:flex-col xs:justify-self-auto bg-primary-black h-110vh lg:justify-around'>
 
-      <div className=" text-white text-center  rounded-lg p-1 box-content "> 
-       <button className="text-white bg-blue-300 w-60 h-45 rounded-lg hover:bg-blue-400 p-1 " onClick={getLocation}>Anlık bilgileri al</button>
+      <div className=" text-white text-center  rounded-lg p-1 box-content ">
+        <button className="text-white bg-blue-300 w-60 h-45 rounded-lg hover:bg-blue-400 p-1 " onClick={getLocation}>Anlık bilgileri al</button>
         <p>{status}</p>
 
         <div className="text-2xl  " >{data.name && <p>  {data.name} </p>}</div>
         <div className=" flex justify-center">{GetIcon1()}</div>
         <div className="text-lg ">{data.main && <p> sıcaklık: {Math.ceil(data.main.temp)}ºC  </p>}</div>
         <div className="text-lg " >{data.main && <p> hissedilen sıcaklık: {Math.ceil(data.main.feels_like)}ºC </p>}</div>
-        <div className="text-lg "> {data.wind && <p> rüzgar hızı: {(data.wind.speed)}</p>}</div>
+        <div className="text-lg "> {data.wind && <p> rüzgar hızı: {(data.wind.speed)} km/sa</p>}</div>
         <div className="text-lg">{data.main && <p> nem: {(data.main.humidity)}% </p>}</div>
-        {data.weather && (<p> havanın durumu:{data.weather.map((data) => data.main)}</p>)}
-        {data.weather && <p>hava özelliği: {(data.weather[0].description)}</p>}
+
+        {data.weather && <p>hava : {(data.weather[0].description)}</p>}
         <div className=""> {data.dt && <p>Tarih: {new Date(data.dt * 1000).toLocaleDateString()} </p>}</div>
       </div>
 
-      <div className=" text-white  p-1 text-center  rounded-lg  ">
+
+
+
+      <div className=" text-white  p-1 text-center rounded-lg  ">
         <div  >
-          <input className="text-black h-45 w-60   "
+          <input className="text-black h-45 w-55   "
             type="text"
-            placeholder="Şehir ismi"
+            placeholder="şehir ismi giriniz"
             onChange={(e) => setSearch(e.target.value)}
             value={Search}
-            onKeyPress={cal}
-          >
-              </input>
+            onKeyPress={event => {
+              if (event.key === 'Enter') {
+                cal()
+              }
+            }}
 
+
+          />
+
+          <button
+            onClick={cal}>
+            ara
+          </button>
         </div>
+
         <div className="   text-center  mt-1  ">
           <div className="text-4xl text-center ">  {day.name}  </div>
           <div className=" flex justify-center">{GetIcon()}</div>
@@ -167,7 +180,7 @@ export default function Index() {
           <div className="float-left mr-1">{day.main && <p> min sıcaklık: {Math.round(day.main.temp_min)} ºC </p>} </div>
           <div className="ml-1 float-right">{day.main && <p> max sıcaklık: {Math.round(day.main.temp_max)} ºC </p>} </div>
           <div className="">{day.main && <p>Nem: {Math.round(day.main.humidity)}% </p>} </div>
-          <div className=" "> {day.wind && <p> rüzgar hızı: {(day.wind.speed)}</p>}</div>
+          <div className=" "> {day.wind && <p> rüzgar hızı: {(day.wind.speed)}km/sa</p>}</div>
           <div> {day.dt && <p>Tarih: {new Date(day.dt * 1000).toLocaleDateString()} </p>}</div>
         </div>
       </div>

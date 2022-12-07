@@ -152,7 +152,7 @@ export default function Index() {
 
       <div className=" text-white  p-1 text-center rounded-lg  ">
         <div  >
-          <input className="text-black h-45 w-55   "
+          <input className="text-black h-45 w-55 border-2   "
             type="text"
             placeholder="şehir ismi giriniz"
             onChange={(e) => setSearch(e.target.value)}
@@ -166,7 +166,7 @@ export default function Index() {
 
           />
 
-          <button
+          <button className="text-white bg-blue-300 ml-2 rounded-lg hover:bg-blue-400 p-1 "
             onClick={cal}>
             ara
           </button>

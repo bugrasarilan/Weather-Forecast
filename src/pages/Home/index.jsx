@@ -130,7 +130,7 @@ export default function Index() {
 
   return (
 
-    <div className='flex flex-col md:flex-row md:justify-around sm:flex-row sm:justify-around xs:flex-col xs:justify-self-auto bg-primary-black h-110vh lg:justify-around'>
+    <div className='flex flex-col md:flex-row md:justify-around sm:flex-row sm:justify-around xs:flex-col xs:justify-self-auto  h-110vh lg:justify-around bg-gradient-to-t from-blue-900 to-blue-500'>
 
       <div className=" text-white text-center  rounded-lg p-1 box-content ">
         <button className="text-white bg-blue-300 w-60 h-45 rounded-lg hover:bg-blue-400 p-1 " onClick={getLocation}>Anlık bilgileri al</button>

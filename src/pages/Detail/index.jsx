@@ -19,7 +19,6 @@ export default function Index() {
                setSearch("")
 
             });
-
    };
 
    const Location = () => {
@@ -39,8 +38,7 @@ export default function Index() {
    };
 
    return (
-      <div className="flex flex-col md:flex-row bg-primary-black  h-screen lg:justify-around   ">
-         detail
+      <div className="flex flex-col md:flex-row bg-primary-black  h-screen lg:justify-around ">
          <div className=" text-white  text-center ">
             <div >
                <input className="text-black"
@@ -65,9 +63,7 @@ export default function Index() {
 
          <div className=" text-white   mt-1.5 p-1  flex flex-row  ">
             <div className=" "> <button className=" text-white  bg-gray-400 w-60 h-45 mb-5 rounded-lg hover:bg-gray-500 p-1   " onClick={Location}>3 saatlik bilgileri al</button> </div>
-
             <div className="text-white mt-1 mr-3 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[0].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[0].main.feels_like)}ºC </p>}</div>
@@ -76,11 +72,9 @@ export default function Index() {
                <div className="text-lg " > {day.list && <p>havanın durumu: {(day.list[0].weather[0].main)}</p>}</div>
                <div className="text-lg ">  {day.list && <p> time: {(day.list[0].dt_txt)}</p>}  </div>
                <div> {day.list && <p>Tarih: {new Date(day.list[0].dt * 1000).toLocaleDateString()} </p>}</div>
-
             </div>
 
             <div className="  text-white    mt-1 mr-3 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[1].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[1].main.feels_like)}ºC </p>}</div>
@@ -89,11 +83,9 @@ export default function Index() {
                <div className="text-lg " > {day.list && <p>havanın durumu: {(day.list[1].weather[0].main)}</p>}</div>
                <div className="text-lg ">  {day.list && <p> time: {(day.list[1].dt_txt)}</p>}  </div>
                <div> {day.list && <p>Tarih: {new Date(day.list[1].dt * 1000).toLocaleDateString()} </p>}</div>
-
             </div>
 
             <div className=" text-white   mt-1 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[2].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[2].main.feels_like)}ºC </p>}</div>
@@ -105,7 +97,6 @@ export default function Index() {
             </div>
 
             <div className=" text-white   mt-1 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[3].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[3].main.feels_like)}ºC </p>}</div>
@@ -117,7 +108,6 @@ export default function Index() {
             </div>
 
             <div className=" text-white   mt-1 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[4].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[4].main.feels_like)}ºC </p>}</div>
@@ -129,7 +119,6 @@ export default function Index() {
             </div>
 
             <div className=" text-white  mt-1 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[5].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[5].main.feels_like)}ºC </p>}</div>
@@ -141,7 +130,6 @@ export default function Index() {
             </div>
 
             <div className=" text-white  mt-1 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[6].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[6].main.feels_like)}ºC </p>}</div>
@@ -153,7 +141,6 @@ export default function Index() {
             </div>
 
             <div className=" text-white  mt-1 rounded-lg p-1 box-content " >
-
                <div className="text-2xl"> {day.city && <p>{(day.city.name)} </p>} </div>
                <div className="text-lg ">{day.list && <p>sıcaklık: {Math.ceil(day.list[7].main.temp)}ºC</p>}</div>
                <div className="text-lg " >{day.list && <p> hissedilen sıcaklık: {Math.ceil(day.list[7].main.feels_like)}ºC </p>}</div>

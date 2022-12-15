@@ -6,7 +6,7 @@ import Detail from "./pages/Detail";
 function App() {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='Detail' element={<Detail />} />

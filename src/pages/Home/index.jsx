@@ -122,22 +122,27 @@ export default function Index() {
 
   return (
 
-    <div className='flex flex-col md:flex-row md:justify-around sm:flex-row sm:justify-around xs:flex-col xs:justify-self-auto  h-110vh lg:justify-around bg-gradient-to-t from-blue-900 to-blue-500'>
-      <div className=" text-white text-center  rounded-lg p-1 box-content ">
+    <div className='flex flex-col md:flex-row md:justify-around sm:flex-row sm:justify-around xs:flex-col xs:justify-self-auto  h-screen lg:justify-around '>
+   <img
+        className="fixed h-full w-screen object-cover"
+        src="sky.jpg"
+        alt="photos"
+      />
+      <div className=" text-white text-center  rounded-lg p-1 box-content z-10 mt-8 sm:mt-15 ">
         <button className="text-white bg-blue-300 w-60 h-45 rounded-lg hover:bg-blue-400 p-1 " onClick={getLocation}>Anlık bilgileri al</button>
         <p>{status}</p>
-        <div className="text-2xl  " >{data.name && <p>  {data.name} </p>}</div>
+        <div className="text-3xl font-bold  " >{data.name && <p>  {data.name} </p>}</div>
         <div className=" flex justify-center">{GetIcon1()}</div>
         <div className="text-lg ">{data.main && <p> sıcaklık: {Math.ceil(data.main.temp)}ºC  </p>}</div>
         <div className="text-lg " >{data.main && <p> hissedilen sıcaklık: {Math.ceil(data.main.feels_like)}ºC </p>}</div>
         <div className="text-lg "> {data.wind && <p> rüzgar hızı: {(data.wind.speed)} km/sa</p>}</div>
         <div className="text-lg">{data.main && <p> nem: {(data.main.humidity)}% </p>}</div>
         {data.weather && <p>hava : {(data.weather[0].description)}</p>}
-        <div className=""> {data.dt && <p>Tarih: {new Date(data.dt * 1000).toLocaleDateString()} </p>}</div>
+        <div> {data.dt && <p>Tarih: {new Date(data.dt * 1000).toLocaleDateString()} </p>}</div>
       </div>
-      <div className=" text-white  p-1 text-center rounded-lg">
-        <div  >
-          <input className="text-black h-45 w-55 border-2"
+      <div className=" text-white  p-1 text-center rounded-lg  sm:mt-15 z-10">
+        <div>
+          <input className="text-black h-45 w-55 border-2 rounded-lg focus:outline-none"
             type="text"
             placeholder="şehir ismi giriniz"
             onChange={(e) => setSearch(e.target.value)}
@@ -148,13 +153,13 @@ export default function Index() {
               }
             }}
           />
-          <button className="text-white bg-blue-300 ml-2 rounded-lg hover:bg-blue-400 p-1 "
+          <button className="text-white  bg-blue-300 ml-2 rounded-lg hover:bg-blue-400 p-1 "
             onClick={cal}>
             ara
           </button>
         </div>
-        <div className="text-center  mt-1">
-          <div className="text-4xl text-center ">  {day.name}  </div>
+        <div className="text-center">
+          <div className="text-3xl font-bold text-center ">  {day.name}  </div>
           <div className=" flex justify-center">{GetIcon()}</div>
           <div className="  ">{day.weather && <p> {(day.weather[0].description)}</p>}</div>
           <div className="">{day.main && <p> sıcaklık: {Math.round(day.main.temp)} ºC </p>} </div>

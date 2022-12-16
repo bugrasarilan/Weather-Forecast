@@ -58,9 +58,7 @@ export default function Index() {
             {hour.weather && <p>hava özelliği: {(hour.weather[0].description)}</p>}
             {hour.weather && <p>havanın durumu {(hour.weather[0].main)}</p>}
          </div>
-
-
-
+         
          <div className=" text-white   mt-1.5 p-1  flex flex-row  ">
             <div className=" "> <button className=" text-white  bg-gray-400 w-60 h-45 mb-5 rounded-lg hover:bg-gray-500 p-1   " onClick={Location}>3 saatlik bilgileri al</button> </div>
             <div className="text-white mt-1 mr-3 rounded-lg p-1 box-content " >
